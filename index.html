@@ -1,0 +1,757 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Maya Chen | Senior Full-Stack & AI Systems Architect</title>
+    <meta name="description" content="High-contrast monochrome portfolio for full-stack engineer Maya Chen featuring an interactive soundscape, glassmorphism, and project case studies." />
+    <meta property="og:title" content="Maya Chen | Senior Full-Stack & AI Systems Architect" />
+    <meta property="og:description" content="High-contrast monochrome portfolio for full-stack engineer Maya Chen featuring an interactive soundscape, glassmorphism, and project case studies." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Google Fonts: Playfair Display & Space Grotesk -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome 6 for Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- Application Stylesheets -->
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/animations.css" />
+  </head>
+  <body>
+    <!-- Background Particle Canvas (Strictly pointer-events: none) -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- ====================================================================
+         1. PREMIUM GATEWAY ENTRANCE MODAL
+         Pure black background (#000000) with subtle grid pattern
+         Centered content with large pulsing "MC" logo
+         Two buttons in exact order: "Enter with Sound" then "Enter Muted"
+         ==================================================================== -->
+    <section id="gateway-modal" aria-label="Welcome Gateway">
+      <div class="gateway-content">
+        <div class="gateway-logo-wrapper">
+          <div class="mc-logo" aria-label="Maya Chen Monogram">MC</div>
+        </div>
+
+        <h1 class="gateway-title">Maya Chen</h1>
+        <p class="gateway-subtitle">
+          Staff Full-Stack Engineer & AI Systems Architect. Designing high-throughput distributed engines and autonomous intelligence.
+        </p>
+
+        <!-- Two buttons in exact specified order -->
+        <div class="gateway-buttons">
+          <button id="btn-enter-sound" class="btn-enter-sound" type="button">
+            <i class="fa-solid fa-volume-high"></i>
+            <span>Enter with Sound</span>
+          </button>
+
+          <button id="btn-enter-muted" class="btn-enter-muted" type="button">
+            <i class="fa-solid fa-volume-xmark"></i>
+            <span>Enter Muted</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         2. MAIN PORTFOLIO PAGE
+         Fades in when gateway completes
+         ==================================================================== -->
+    <div id="main-wrapper" class="page-hidden">
+      <!-- Top Navigation (Sticky, White Glass, 3-Zone Contract) -->
+      <header class="site-header">
+        <div class="container nav-container">
+          <!-- Zone 1: Wordmark / Brand -->
+          <a href="#" class="nav-brand" aria-label="Maya Chen Home">
+            <div class="nav-brand-logo">MC</div>
+            <span class="nav-brand-text">Maya Chen</span>
+          </a>
+
+          <!-- Zone 2: Navigation Links -->
+          <nav class="nav-links" aria-label="Main Navigation">
+            <a href="#about" class="nav-link">About</a>
+            <a href="#experience" class="nav-link">Experience</a>
+            <a href="#projects" class="nav-link">Projects</a>
+            <a href="#skills" class="nav-link">Capabilities</a>
+            <a href="#contact" class="nav-link">Contact</a>
+          </nav>
+
+          <!-- Zone 3: Sound Control & Primary Action -->
+          <div class="nav-actions">
+            <button class="sound-toggle-btn" type="button" aria-label="Toggle Sound">
+              <i class="fa-solid fa-volume-xmark"></i>
+              <span class="sound-toggle-text">Muted</span>
+              <span class="sound-wave-indicator" aria-hidden="true">
+                <span class="sound-wave-bar"></span>
+                <span class="sound-wave-bar"></span>
+                <span class="sound-wave-bar"></span>
+              </span>
+            </button>
+            <a href="#contact" class="btn-primary">
+              <span>Initiate Contact</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <button class="mobile-menu-btn" type="button" aria-label="Toggle Navigation Menu">
+              <i class="fa-solid fa-bars"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div class="mobile-nav" aria-label="Mobile Navigation">
+          <a href="#about" class="nav-link">About</a>
+          <a href="#experience" class="nav-link">Experience</a>
+          <a href="#projects" class="nav-link">Projects</a>
+          <a href="#skills" class="nav-link">Capabilities</a>
+          <a href="#contact" class="nav-link">Contact</a>
+          <a href="#contact" class="btn-primary" style="margin-top: 0.5rem; justify-content: center;">
+            <span>Initiate Contact</span>
+          </a>
+        </div>
+      </header>
+
+      <!-- Main Content Container -->
+      <main>
+        <!-- ================================================================
+             HERO SECTION
+             Oversized typography, split column, floating hero image
+             ================================================================ -->
+        <section class="hero-section" id="hero">
+          <div class="container">
+            <div class="hero-grid">
+              <!-- Left Column: Typography & CTAs -->
+              <div class="hero-text-col reveal-on-scroll">
+                <div class="hero-kicker">
+                  <span class="hero-kicker-line"></span>
+                  <span>Full-Stack &amp; Distributed Systems</span>
+                </div>
+
+                <h1 class="hero-title">
+                  Architecting <span class="hero-title-italic">intelligent</span> systems at massive scale.
+                </h1>
+
+                <p class="hero-lead">
+                  I am Maya Chen, a full-stack engineer and distributed systems specialist. I build fault-tolerant cloud backbones, real-time AI inference pipelines, and ultra-crisp interfaces that process millions of events per second with elegance.
+                </p>
+
+                <div class="hero-cta-group">
+                  <a href="#projects" class="btn-primary" style="padding: 0.85rem 1.85rem; font-size: 1rem;">
+                    <span>Explore Featured Work</span>
+                    <i class="fa-solid fa-arrow-down"></i>
+                  </a>
+                  <a href="#contact" class="btn-secondary">
+                    <i class="fa-solid fa-terminal"></i>
+                    <span>Get in Touch</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Right Column: Floating Hero Visual -->
+              <div class="hero-visual-col reveal-on-scroll delay-1">
+                <div class="hero-image-card">
+                  <div class="hero-image-inner">
+                    <!-- Real Unsplash photography without grey overlay -->
+                    <img
+                      src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1200&q=85"
+                      alt="Maya Chen, Senior Full-Stack Engineer"
+                      class="hero-img"
+                      loading="eager"
+                      referrerpolicy="no-referrer"
+                    />
+                  </div>
+
+                  <!-- Floating Glass Badge -->
+                  <div class="hero-floating-badge">
+                    <div class="badge-icon-box">
+                      <i class="fa-solid fa-code-branch"></i>
+                    </div>
+                    <div>
+                      <div class="badge-title">Currently Engineering</div>
+                      <div class="badge-desc">Autonomous AI Agent Clusters</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================
+             ABOUT & STATS SECTION
+             Live stat counters and skills matrix
+             ================================================================ -->
+        <section class="about-section" id="about">
+          <div class="container">
+            <!-- 4-Column Stat Counter Strip -->
+            <div class="stats-strip reveal-on-scroll">
+              <div class="stat-card">
+                <div class="stat-number" data-target="8" data-suffix="+">0</div>
+                <div class="stat-label">Years Production Mastery</div>
+              </div>
+
+              <div class="stat-card">
+                <div class="stat-number" data-target="99.99" data-suffix="%">0</div>
+                <div class="stat-label">Historical Cloud Uptime</div>
+              </div>
+
+              <div class="stat-card">
+                <div class="stat-number" data-target="45" data-suffix="M+">0</div>
+                <div class="stat-label">Daily Real-Time Events</div>
+              </div>
+
+              <div class="stat-card">
+                <div class="stat-number" data-target="14" data-suffix="+">0</div>
+                <div class="stat-label">Production Deployments</div>
+              </div>
+            </div>
+
+            <!-- About Grid: Story & Skills Matrix -->
+            <div class="about-grid" id="skills">
+              <div class="about-text reveal-on-scroll">
+                <div class="section-label">Engineering Philosophy</div>
+                <h2 class="section-heading">Bridging low-level rigor with intuitive design.</h2>
+                <p>
+                  Over the past eight years, I have architected high-concurrency microservices, global data fabrics, and machine intelligence pipelines across tech frontiers.
+                </p>
+                <p>
+                  I believe that true engineering elegance lives where rigorous distributed systems discipline meets thoughtful human-computer interaction. Whether designing sub-millisecond Raft consensus protocols or crafting responsive glassmorphic interfaces, my aim is absolute clarity and bulletproof performance.
+                </p>
+                <p>
+                  Based in San Francisco and collaborating globally with visionary teams shaping the future of autonomous software.
+                </p>
+              </div>
+
+              <!-- Skills Matrix (Anti-slop clean typography) -->
+              <div class="skills-container reveal-on-scroll delay-1">
+                <div class="skill-category-card">
+                  <div class="skill-category-header">
+                    <i class="fa-solid fa-microchip"></i>
+                    <h3 class="skill-category-title">AI &amp; Machine Intelligence</h3>
+                  </div>
+                  <div class="skills-list">
+                    <span>LLM Orchestration</span>
+                    <span class="separator">·</span>
+                    <span>Multi-Agent Protocols</span>
+                    <span class="separator">·</span>
+                    <span>TensorRT Inference</span>
+                    <span class="separator">·</span>
+                    <span>RAG Pipelines</span>
+                    <span class="separator">·</span>
+                    <span>Vector Search</span>
+                  </div>
+                </div>
+
+                <div class="skill-category-card">
+                  <div class="skill-category-header">
+                    <i class="fa-solid fa-server"></i>
+                    <h3 class="skill-category-title">Distributed Systems &amp; Cloud</h3>
+                  </div>
+                  <div class="skills-list">
+                    <span>Go &amp; Rust Microservices</span>
+                    <span class="separator">·</span>
+                    <span>Raft Consensus</span>
+                    <span class="separator">·</span>
+                    <span>gRPC &amp; Protobuf</span>
+                    <span class="separator">·</span>
+                    <span>Kubernetes</span>
+                    <span class="separator">·</span>
+                    <span>Kafka &amp; Redis Streams</span>
+                  </div>
+                </div>
+
+                <div class="skill-category-card">
+                  <div class="skill-category-header">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <h3 class="skill-category-title">Full-Stack &amp; Interface Engineering</h3>
+                  </div>
+                  <div class="skills-list">
+                    <span>TypeScript</span>
+                    <span class="separator">·</span>
+                    <span>Web Audio API</span>
+                    <span class="separator">·</span>
+                    <span>Interactive Canvas 2D / WebGL</span>
+                    <span class="separator">·</span>
+                    <span>TailwindCSS</span>
+                    <span class="separator">·</span>
+                    <span>WebSockets &amp; WebRTC</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================
+             TIMELINE EXPERIENCE SECTION
+             ================================================================ -->
+        <section class="timeline-section" id="experience">
+          <div class="container">
+            <div style="text-align: center; max-width: 650px; margin: 0 auto 3rem;" class="reveal-on-scroll">
+              <div class="section-label">Career Milestones</div>
+              <h2 class="section-heading">A journey of relentless systems craftsmanship.</h2>
+              <p>Leading teams and engineering critical infrastructure from early growth to hyper-scale enterprise.</p>
+            </div>
+
+            <div class="timeline-wrapper">
+              <div class="timeline-line"></div>
+
+              <!-- Milestone 1 -->
+              <div class="timeline-item reveal-on-scroll">
+                <div class="timeline-node"></div>
+                <div class="timeline-card">
+                  <div class="timeline-meta">
+                    <span>2023 — Present</span>
+                    <span>·</span>
+                    <span>San Francisco, CA</span>
+                  </div>
+                  <h3 class="timeline-role">Staff Distributed Systems Architect</h3>
+                  <div class="timeline-company">Cognitive Cloud Engines</div>
+                  <p class="timeline-desc">
+                    Spearheaded the design and deployment of the next-generation multi-agent execution fabric, orchestrating millions of parallel reasoning workflows daily.
+                  </p>
+                  <ul class="timeline-achievements">
+                    <li><i class="fa-solid fa-circle-chevron-right"></i> Reduced model routing latency by 44% with custom eBPF packet filters.</li>
+                    <li><i class="fa-solid fa-circle-chevron-right"></i> Directed a high-velocity team of 12 backend and infrastructure engineers.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Milestone 2 -->
+              <div class="timeline-item reveal-on-scroll delay-1">
+                <div class="timeline-node"></div>
+                <div class="timeline-card">
+                  <div class="timeline-meta">
+                    <span>2021 — 2023</span>
+                    <span>·</span>
+                    <span>Remote / New York</span>
+                  </div>
+                  <h3 class="timeline-role">Lead Full-Stack Engineer</h3>
+                  <div class="timeline-company">Aether Metrics Data Corp</div>
+                  <p class="timeline-desc">
+                    Architected high-throughput telemetry storage layers handling over 35 billion data points weekly with sub-5ms interactive analytics queries.
+                  </p>
+                  <ul class="timeline-achievements">
+                    <li><i class="fa-solid fa-circle-chevron-right"></i> Engineered the browser-side visual analytics canvas with zero layout thrashing.</li>
+                    <li><i class="fa-solid fa-circle-chevron-right"></i> Modernized CI/CD pipelines, slashing release verification cycles from 2 hours to 6 minutes.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Milestone 3 -->
+              <div class="timeline-item reveal-on-scroll delay-2">
+                <div class="timeline-node"></div>
+                <div class="timeline-card">
+                  <div class="timeline-meta">
+                    <span>2018 — 2021</span>
+                    <span>·</span>
+                    <span>Seattle, WA</span>
+                  </div>
+                  <h3 class="timeline-role">Senior Systems Engineer</h3>
+                  <div class="timeline-company">Helix Microservices</div>
+                  <p class="timeline-desc">
+                    Implemented globally replicated key-value storage nodes and zero-trust perimeter proxies for tier-1 financial infrastructure clients.
+                  </p>
+                  <ul class="timeline-achievements">
+                    <li><i class="fa-solid fa-circle-chevron-right"></i> Designed automated partition recovery using custom Raft election algorithms.</li>
+                    <li><i class="fa-solid fa-circle-chevron-right"></i> Maintained 99.999% SLA during critical migration windows across 4 cloud regions.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================
+             PROJECTS SECTION (4 Featured Cards)
+             Real Unsplash photography, no dimming overlay, interactive modals
+             ================================================================ -->
+        <section class="projects-section" id="projects">
+          <div class="container">
+            <div class="projects-header reveal-on-scroll">
+              <div class="section-label">Selected Portfolio</div>
+              <h2 class="section-heading">Featured Engineering Projects</h2>
+              <p>Four representative architectures illustrating deep-stack engineering across distributed consensus, AI inference, and cloud networking.</p>
+            </div>
+
+            <div class="projects-grid">
+              <!-- Card 1: NexusAI -->
+              <article class="project-card reveal-on-scroll" data-project-id="nexus">
+                <div class="project-image-box">
+                  <img
+                    src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1000&q=85"
+                    alt="NexusAI Orchestrator Architecture Preview"
+                    class="project-img"
+                    loading="lazy"
+                    referrerpolicy="no-referrer"
+                  />
+                </div>
+                <div class="project-content">
+                  <div class="project-meta">
+                    <span>AI Orchestration</span>
+                    <span>·</span>
+                    <span>2025</span>
+                  </div>
+                  <h3 class="project-title">NexusAI Orchestrator</h3>
+                  <p class="project-desc">
+                    Enterprise LLM reasoning loop engine with deterministic tool calling, multi-agent quorum consensus, and sub-180ms TTFT streaming inference.
+                  </p>
+                  <div class="project-tech">
+                    <span>TypeScript</span>
+                    <span class="dot">·</span>
+                    <span>Rust Core</span>
+                    <span class="dot">·</span>
+                    <span>FastAPI</span>
+                    <span class="dot">·</span>
+                    <span>Redis Streams</span>
+                  </div>
+                  <div class="project-footer">
+                    <button class="project-btn-detail" type="button">
+                      <span>View Case Study</span>
+                      <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                    <div class="project-links">
+                      <a href="https://github.com/mayachen-dev/nexus-ai-orchestrator" target="_blank" rel="noopener noreferrer" class="project-icon-link" aria-label="GitHub Repository">
+                        <i class="fa-brands fa-github"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Card 2: Aether DB -->
+              <article class="project-card reveal-on-scroll delay-1" data-project-id="aether">
+                <div class="project-image-box">
+                  <img
+                    src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1000&q=85"
+                    alt="Aether Distributed DB Infrastructure Preview"
+                    class="project-img"
+                    loading="lazy"
+                    referrerpolicy="no-referrer"
+                  />
+                </div>
+                <div class="project-content">
+                  <div class="project-meta">
+                    <span>Storage Engine</span>
+                    <span>·</span>
+                    <span>2024</span>
+                  </div>
+                  <h3 class="project-title">Aether Distributed DB</h3>
+                  <p class="project-desc">
+                    Globally partition-tolerant key-value store with Raft consensus synchronization, RocksDB backend, and zero-downtime shard rebalancing.
+                  </p>
+                  <div class="project-tech">
+                    <span>Go</span>
+                    <span class="dot">·</span>
+                    <span>Raft Protocol</span>
+                    <span class="dot">·</span>
+                    <span>gRPC</span>
+                    <span class="dot">·</span>
+                    <span>eBPF</span>
+                  </div>
+                  <div class="project-footer">
+                    <button class="project-btn-detail" type="button">
+                      <span>View Case Study</span>
+                      <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                    <div class="project-links">
+                      <a href="https://github.com/mayachen-dev/aether-distributed-db" target="_blank" rel="noopener noreferrer" class="project-icon-link" aria-label="GitHub Repository">
+                        <i class="fa-brands fa-github"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Card 3: Synapse Vision -->
+              <article class="project-card reveal-on-scroll" data-project-id="synapse">
+                <div class="project-image-box">
+                  <img
+                    src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1000&q=85"
+                    alt="Synapse Vision Analytics Interface Preview"
+                    class="project-img"
+                    loading="lazy"
+                    referrerpolicy="no-referrer"
+                  />
+                </div>
+                <div class="project-content">
+                  <div class="project-meta">
+                    <span>Edge Computer Vision</span>
+                    <span>·</span>
+                    <span>2024</span>
+                  </div>
+                  <h3 class="project-title">Synapse Vision Analytics</h3>
+                  <p class="project-desc">
+                    Low-latency computer vision pipeline deploying quantized neural models to edge gateways for automated industrial telemetry and classification.
+                  </p>
+                  <div class="project-tech">
+                    <span>Python</span>
+                    <span class="dot">·</span>
+                    <span>TensorRT</span>
+                    <span class="dot">·</span>
+                    <span>WebRTC</span>
+                    <span class="dot">·</span>
+                    <span>React Canvas</span>
+                  </div>
+                  <div class="project-footer">
+                    <button class="project-btn-detail" type="button">
+                      <span>View Case Study</span>
+                      <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                    <div class="project-links">
+                      <a href="https://github.com/mayachen-dev/synapse-vision-analytics" target="_blank" rel="noopener noreferrer" class="project-icon-link" aria-label="GitHub Repository">
+                        <i class="fa-brands fa-github"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Card 4: OmniScale Mesh -->
+              <article class="project-card reveal-on-scroll delay-1" data-project-id="omniscale">
+                <div class="project-image-box">
+                  <img
+                    src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1000&q=85"
+                    alt="OmniScale Cloud Mesh Topology Preview"
+                    class="project-img"
+                    loading="lazy"
+                    referrerpolicy="no-referrer"
+                  />
+                </div>
+                <div class="project-content">
+                  <div class="project-meta">
+                    <span>Cloud Networking</span>
+                    <span>·</span>
+                    <span>2023</span>
+                  </div>
+                  <h3 class="project-title">OmniScale Cloud Mesh</h3>
+                  <p class="project-desc">
+                    Zero-trust service mesh and intelligent load director with automated mTLS, token rotation, and distributed OpenTelemetry tracing graphs.
+                  </p>
+                  <div class="project-tech">
+                    <span>Rust</span>
+                    <span class="dot">·</span>
+                    <span>Envoy Proxy</span>
+                    <span class="dot">·</span>
+                    <span>Kubernetes</span>
+                    <span class="dot">·</span>
+                    <span>GraphQL</span>
+                  </div>
+                  <div class="project-footer">
+                    <button class="project-btn-detail" type="button">
+                      <span>View Case Study</span>
+                      <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                    <div class="project-links">
+                      <a href="https://github.com/mayachen-dev/omniscale-cloud-mesh" target="_blank" rel="noopener noreferrer" class="project-icon-link" aria-label="GitHub Repository">
+                        <i class="fa-brands fa-github"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================
+             CONTACT SECTION
+             ================================================================ -->
+        <section class="contact-section" id="contact">
+          <div class="container">
+            <div class="contact-grid">
+              <!-- Left Column: Direct Links & Info -->
+              <div class="contact-info reveal-on-scroll">
+                <div>
+                  <div class="section-label">Direct Communication</div>
+                  <h2 class="section-heading">Let's build something enduring together.</h2>
+                  <p>
+                    Currently considering select technical advisory roles, staff engineering leadership opportunities, and high-impact distributed AI collaborations.
+                  </p>
+                </div>
+
+                <div class="contact-channels">
+                  <div class="channel-item">
+                    <div class="channel-icon">
+                      <i class="fa-solid fa-envelope"></i>
+                    </div>
+                    <div>
+                      <div class="channel-label">Direct Email</div>
+                      <div class="channel-val">maya.chen.systems@gmail.com</div>
+                    </div>
+                  </div>
+
+                  <div class="channel-item">
+                    <div class="channel-icon">
+                      <i class="fa-solid fa-location-dot"></i>
+                    </div>
+                    <div>
+                      <div class="channel-label">Location Base</div>
+                      <div class="channel-val">San Francisco, California</div>
+                    </div>
+                  </div>
+
+                  <div class="channel-item">
+                    <div class="channel-icon">
+                      <i class="fa-solid fa-clock"></i>
+                    </div>
+                    <div>
+                      <div class="channel-label">Timezone</div>
+                      <div class="channel-val">Pacific Time (UTC-8)</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right Column: Interactive Contact Form -->
+              <div class="contact-form-card reveal-on-scroll delay-1">
+                <h3 class="form-title">Send a Transmission</h3>
+                <p class="form-subtitle">Fill out the brief dispatch form below for rapid inquiry turnaround.</p>
+
+                <form id="contact-form" class="contact-form">
+                  <div class="form-group">
+                    <label for="contact-name" class="form-label">Full Name *</label>
+                    <input
+                      type="text"
+                      id="contact-name"
+                      name="name"
+                      required
+                      placeholder="e.g. Elena Vance"
+                      class="form-input"
+                    />
+                  </div>
+
+                  <div class="form-group">
+                    <label for="contact-email" class="form-label">Email Address *</label>
+                    <input
+                      type="email"
+                      id="contact-email"
+                      name="email"
+                      required
+                      placeholder="e.g. elena@venture.io"
+                      class="form-input"
+                    />
+                  </div>
+
+                  <div class="form-group">
+                    <label for="contact-subject" class="form-label">Subject</label>
+                    <input
+                      type="text"
+                      id="contact-subject"
+                      name="subject"
+                      placeholder="e.g. Distributed AI System Architecture"
+                      class="form-input"
+                    />
+                  </div>
+
+                  <div class="form-group">
+                    <label for="contact-message" class="form-label">Project Scope / Inquiry *</label>
+                    <textarea
+                      id="contact-message"
+                      name="message"
+                      rows="4"
+                      required
+                      placeholder="Describe your technical challenge, timeline, and goals..."
+                      class="form-textarea"
+                    ></textarea>
+                  </div>
+
+                  <div id="form-status" class="form-status" role="status"></div>
+
+                  <button type="submit" class="form-submit-btn">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    <span>Send Message</span>
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!-- ================================================================
+           FOOTER WITH DISCLAIMER
+           ================================================================ -->
+      <footer class="site-footer">
+        <div class="container">
+          <div class="footer-top">
+            <div class="footer-brand">Maya Chen</div>
+            <div class="footer-socials">
+              <a href="https://github.com/mayachen-dev" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="GitHub">
+                <i class="fa-brands fa-github"></i>
+              </a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="LinkedIn">
+                <i class="fa-brands fa-linkedin-in"></i>
+              </a>
+              <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="X (Twitter)">
+                <i class="fa-brands fa-x-twitter"></i>
+              </a>
+              <a href="https://substack.com" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Substack">
+                <i class="fa-solid fa-bookmark"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="footer-bottom">
+            <div class="footer-disclaimer">
+              <strong>Disclaimer:</strong> This website is an architectural portfolio presentation for fictional engineer Maya Chen. All project references, case studies, and systems metrics represent illustrative engineering simulations.
+            </div>
+
+            <button id="btn-scroll-top" class="btn-scroll-top" type="button" aria-label="Back to top">
+              <span>Back to Top</span>
+              <i class="fa-solid fa-arrow-up"></i>
+            </button>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <!-- ====================================================================
+         PROJECT DETAIL MODAL / LIGHTBOX
+         ==================================================================== -->
+    <div id="project-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-dialog">
+        <button id="modal-close-btn" class="modal-close-btn" type="button" aria-label="Close Case Study">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="modal-hero-img-wrap">
+          <img id="modal-hero-img" src="" alt="Case Study Hero" class="modal-hero-img" />
+        </div>
+        <div class="modal-body">
+          <div id="modal-meta" class="modal-header-meta"></div>
+          <h2 id="modal-title" class="modal-title"></h2>
+          <p id="modal-desc" class="modal-description"></p>
+
+          <h4 style="margin-bottom: 0.75rem; font-size: 1.1rem;">Engineering Highlights &amp; KPIs:</h4>
+          <ul id="modal-features" class="modal-features"></ul>
+
+          <h4 style="margin-bottom: 0.75rem; font-size: 1.1rem;">Technologies Utilized:</h4>
+          <div id="modal-tech" class="project-tech" style="border: none; padding: 0;"></div>
+
+          <div class="modal-actions">
+            <a id="modal-github-link" href="#" target="_blank" rel="noopener noreferrer" class="btn-primary">
+              <i class="fa-brands fa-github"></i>
+              <span>View Source on GitHub</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Application Script Module -->
+    <script type="module" src="/js/main.js"></script>
+  </body>
+</html>

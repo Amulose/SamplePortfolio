@@ -1,0 +1,116 @@
+/* ==========================================================================
+   MAYA CHEN — ANIMATIONS & KEYFRAMES
+   ========================================================================== */
+
+/* Gateway Monogram Pulse */
+@keyframes logoPulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.2), inset 0 0 15px rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.25);
+  }
+  50% {
+    transform: scale(1.06);
+    box-shadow: 0 0 50px rgba(255, 255, 255, 0.5), inset 0 0 30px rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.7);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.2), inset 0 0 15px rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.25);
+  }
+}
+
+/* Floating Hero Image Drift */
+@keyframes heroFloat {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(0.5deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+
+/* Floating Badge Animation */
+@keyframes badgeFloat {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* Subtle Shimmer for Glass Elements */
+@keyframes glassShimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Subtle Button Ambient Glow */
+@keyframes buttonGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4), 0 6px 20px rgba(0, 0, 0, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 35px rgba(255, 255, 255, 0.75), 0 8px 25px rgba(0, 0, 0, 0.4);
+  }
+}
+
+.btn-enter-sound {
+  animation: buttonGlow 3s ease-in-out infinite;
+}
+
+/* Scroll Reveal Utility Classes */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger Delays */
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
+.delay-4 { transition-delay: 0.4s; }
+
+/* Modal Keyframes */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+/* Reduced Motion Preference Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
