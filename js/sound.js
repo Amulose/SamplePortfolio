@@ -85,9 +85,15 @@ class SoundManager {
 
   enterMuted() {
     this.isMuted = true;
+    if (this.fadeAnimationId) {
+      cancelAnimationFrame(this.fadeAnimationId);
+      this.fadeAnimationId = null;
+    }
     if (this.ambientAudio) {
       this.ambientAudio.pause();
-      this.ambientAudio.volume = 0;
+      try {
+        this.ambientAudio.volume = 0;
+      } catch (_) {}
     }
     this.stopAmbientDrone();
     this.updateSoundToggles();
@@ -124,22 +130,41 @@ class SoundManager {
 
   fadeAudioVolume(audio, targetVolume, durationMs, onComplete) {
     if (!audio) return;
-    const startVolume = audio.volume;
+
+    if (this.fadeAnimationId) {
+      cancelAnimationFrame(this.fadeAnimationId);
+      this.fadeAnimationId = null;
+    }
+
+    const startVolume = Math.max(0, Math.min(1, Number.isFinite(audio.volume) ? audio.volume : 0));
+    const clampedTarget = Math.max(0, Math.min(1, Number.isFinite(targetVolume) ? targetVolume : 0));
     const startTime = performance.now();
+    const duration = Math.max(durationMs || 300, 1);
 
     const ramp = (currentTime) => {
       const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / durationMs, 1);
-      audio.volume = startVolume + (targetVolume - startVolume) * progress;
+      const progress = Math.min(Math.max(elapsed / duration, 0), 1);
+      const rawVolume = startVolume + (clampedTarget - startVolume) * progress;
+      const safeVolume = Math.max(0, Math.min(1, rawVolume));
+
+      try {
+        audio.volume = safeVolume;
+      } catch (err) {
+        console.warn('Volume set failed safely:', err);
+      }
 
       if (progress < 1) {
-        requestAnimationFrame(ramp);
+        this.fadeAnimationId = requestAnimationFrame(ramp);
       } else {
+        try {
+          audio.volume = clampedTarget;
+        } catch (_) {}
+        this.fadeAnimationId = null;
         if (onComplete) onComplete();
       }
     };
 
-    requestAnimationFrame(ramp);
+    this.fadeAnimationId = requestAnimationFrame(ramp);
   }
 
   // Generative warm analog ambient drone in Web Audio API
